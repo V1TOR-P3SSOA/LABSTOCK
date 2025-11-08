@@ -6,20 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('reagents', function (Blueprint $table) {
             $table->id();
+            $table->string( 'name');
+            $table->string('formula');
+            $table->decimal('quantity');
+            $table->string('unit');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('reagents');
