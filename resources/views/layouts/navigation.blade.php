@@ -22,7 +22,7 @@
                         {{ __('Reagentes') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('equipments.index')" :active="request()->routeIs('equipments.*')">
                         {{ __('Equipamentos') }}
                     </x-nav-link>
 
