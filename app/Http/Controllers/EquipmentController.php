@@ -14,51 +14,32 @@ class EquipmentController extends Controller
         return view('equipments.index', compact('equipments'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        
+        return view('equipments/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Equipment::create($request->all());
+
+        return redirect()->route('equipments.index')->with('sucess', 'equipamento adicionado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Equipment $equipment)
     {
-        //
+        return view('equipments.edit', compact('equipment'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Equipment $equipment)
     {
-        //
+        $equipment->update($request->all());
+        return redirect()->route('equipments.index')->with('sucess', 'Equipamento atualizada com sucesso!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Equipment $equipment)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $equipment->delete();
+        return redirect()->route('equipments.index')->with('sucess', 'Equipamento excluído com sucesso!');
     }
 }
