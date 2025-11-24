@@ -6,7 +6,7 @@
     </x-slot>
 
     <h1>ADICIONAR NOVO EQUIPAMENTO</h1>
-    <form class="form" action="{{ route('equipment.store') }}" method="POST">
+    <form class="form" action="{{ route('equipments.store') }}" method="POST">
         @csrf 
       
         <label for="name">Nome:</label>
@@ -15,13 +15,21 @@
         <label for="asset_code">Código:</label>
         <input type="text" id="asset_code" name="asset_code"><br>
 
-        <label for="status">Status:</label>
-        <input type="text" id="status" name="status"><br>
+        <label for="status">Status
+        <select name="status" id="status">
+
+            <option value="" disabled selected> </option>
+
+            <option value="Livre">Livre</option>
+
+            <option value="Reservado">Reservado</option>
+
+        </select>
 
         <label for="unit">Última Calibração:</label>
         <input type="date" id="last_calibration"><br>
         
         <button type="submit">Adicionar</button>
-        <a href="{{ route('equipaments.index') }}">Cancelar</a>
+        <a href="{{ route('equipments.index') }}">Cancelar</a>
 </form>
 </x-app-layout>
