@@ -26,8 +26,8 @@
 
         </select>
 
-        <label for="unit">Última Calibração:</label>
-        <input type="date" id="last_calibration"><br>
+        <label for="last_calibration">Última Calibração:</label>
+        <input type="date" id="last_calibration" name="last_calibration"><br>
         
         <button type="submit">Adicionar</button>
         <a href="{{ route('equipments.index') }}">Cancelar</a>
