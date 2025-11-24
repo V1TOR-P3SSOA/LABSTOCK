@@ -21,7 +21,7 @@
                 <td>{{ $equipment -> status }}</td>
                 <td>{{ $equipment -> last_calibration }}</td>
                 <td>
-                    <a href="{{ route('reagents.edit', $equipment -> id) }}">Editar</a> | <form action="{{ route('reagents.destroy', $equipment -> id) }}" method="POST" id="delete">
+                    <a href="{{ route('equipments.edit', $equipment -> id) }}">Editar</a> | <form action="{{ route('equipments.destroy', $equipment -> id) }}" method="POST" id="delete">
                         @csrf 
                         @method('DELETE')
                         <button type="submit">Excluir</button>
