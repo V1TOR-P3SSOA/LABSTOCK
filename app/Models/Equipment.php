@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equipment extends Model
 {
-    //
+    protected $fillable = ['name', 'asset_code', 'status', 'last_calibration'];
 }
