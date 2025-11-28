@@ -30,13 +30,15 @@ class ResearchController extends Controller
 
     public function edit(Research $research)
     {
-        return view('researches.edit', compact('research'));
+        $users = User::all();
+        return view('researches.edit', compact('research','users'));
     }
 
     public function update(Request $request, Research $research)
     {
-        $research->update($request->all());
-        return redirect()->route('researches.index')->with('sucess', 'Pesquisa atualizada com sucesso!');
+        $loan = Research::findOrFail($research->id);
+        $loan->update($request->all());
+        return redirect()->route('researches.index')->with('success', 'Pesquisa atualizada!');
     }
 
     public function destroy(Research $research)
