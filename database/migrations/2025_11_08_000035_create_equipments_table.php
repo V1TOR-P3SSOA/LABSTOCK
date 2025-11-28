@@ -6,17 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
-        Schema::create('equipment', function (Blueprint $table) {
+        Schema::create('equipments', function (Blueprint $table) {
             $table->id();
-            $table->string( 'name');
+            $table->string('name');
             $table->string('asset_code');
             $table->string('status');
-            $table->date('last_calibration');
+            $table->date('last_calibration')->nullable();
             $table->timestamps();
         });
     }
