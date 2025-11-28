@@ -30,13 +30,17 @@ class LoanController extends Controller
 
     public function edit(Loan $loan)
     {
-        return view('loans.edit', compact('loan'));
+        $loan = Loan::findOrFail($loan->id); 
+        $equipments = Equipment::all();
+        $users = User::all();
+        return view('loans.edit', compact('loan', 'equipments', 'users'));
     }
 
     public function update(Request $request, Loan $loan)
     {
+        $loan = Loan::findOrFail($loan->id);
         $loan->update($request->all());
-        return redirect()->route('loans.index')->with('sucess', 'Reserva atualizada com sucesso!');
+        return redirect()->route('loans.index')->with('success', 'Reserva atualizada!');
     }
 
     public function destroy(Loan $loan)
