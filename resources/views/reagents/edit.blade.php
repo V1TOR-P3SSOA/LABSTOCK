@@ -4,26 +4,39 @@
             {{ __('Reagentes') }}
         </h2>
     </x-slot>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <h1 class="text-2xl font-semibold mb-6">Editar reagente</h1>
+                    <form class="form" action="{{ route('reagents.update', $reagent->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div>
+                            <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Nome:</label>
+                            <input type="text" id="name" name="name" value="{{ $reagent->name }}"  class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
+                        </div>
+                        <div>
+                            <label for="formula" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Fórmula:</label>
+                            <input type="text" id="formula" name="formula" value="{{ $reagent->formula }}"  class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
+                        </div>
+                        <div>
+                            <label for="quantity" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Quantidade:</label>
+                            <input type="text" id="quantity" name="quantity" value="{{ $reagent->quantity }}"  class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
+                        </div>
+                        <div>
+                            <label for="unit" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Unidade:</label>
+                            <input type="text" id="unit" name="unit" value="{{ $reagent->unit }}"  class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
+                        </div>
+                        <div class="flex items-center gap-4 pt-4">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Salvar</button>
+                            <a href="{{ route('reagents.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Cancelar</a>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h1>EDITAR REAGENTE</h1>
-    <form class="form" action="{{ route('reagents.update', $reagent ->id) }}" method="POST">
-        @csrf 
-        @method('PUT')
-        
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" value = {{ $reagent -> name }}><br>
-
-        <label for="formula">Fórmula:</label>
-        <input type="text" id="formula" name="formula" value = {{ $reagent -> formula }}><br>
-
-        <label for="quantity">Quantidade:</label>
-        <input type="text" id="quantity" name="quantity" value = {{ $reagent -> quantity }}><br>
-
-        <label for="unit">Unidade:</label>
-        <input type="text" id="unit" name="unit" value = {{ $reagent -> unit }}><br>
-
-        <br>
-        <button type="submit">Salvar</button>
-        <a href="{{ route('reagents.index') }}">Cancelar</a>
-</form>
 </x-app-layout>
