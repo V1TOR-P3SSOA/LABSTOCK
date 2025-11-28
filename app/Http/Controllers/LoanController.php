@@ -25,7 +25,6 @@ class LoanController extends Controller
     public function store(Request $request)
     {
         Loan::create($request->all());
-
         return redirect()->route('loans.index')->with('sucess', 'reserva registrada com sucesso!');
     }
 
