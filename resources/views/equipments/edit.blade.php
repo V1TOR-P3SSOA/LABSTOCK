@@ -11,18 +11,26 @@
         @method('PUT')
         
         <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" value = {{ $equipment -> name }}><br>
+        <input type="text" id="name" name="name" value = {{ $equipment -> name }}>
 
         <label for="asset_code">Código:</label>
-        <input type="text" id="asset_code" name="asset_code" value = {{ $equipment -> asset_code }}><br>
+        <input type="text" id="asset_code" name="asset_code" value = {{ $equipment -> asset_code }}>
 
-        <label for="status">Status:</label>
-        <input type="text" id="status" name="status" value = {{ $equipment -> status }}><br>
+        <label for="status">Status
+        <select name="status" id="status">
+
+            <option value={{ $equipment -> status }}></option>
+
+            <option value="Livre">Livre</option>
+
+            <option value="Reservado">Reservado</option>
+
+        </select>
 
         <label for="unit">Última Calibração:</label><br>
-        <input type="date" id="last_calibration" name="last_calibration" value = {{ $equiament -> last_calibration }}>
+        <input type="date" id="last_calibration" name="last_calibration" value = {{ $equipment -> last_calibration }}>
         
         <button type="submit">Salvar</button>
-        <a href="{{ route('equipaments.index') }}">Cancelar</a>
+        <a href="{{ route('equipments.index') }}">Cancelar</a>
 </form>
 </x-app-layout>
