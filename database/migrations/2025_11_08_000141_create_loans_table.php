@@ -11,10 +11,10 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->string( 'equipment_id');
-            $table->string('user_id');
+            $table->foreignId('equipment_id')->constrained('equipments');
+            $table->foreignId('user_id')->constrained('users');
             $table->date('borrow_date');
-            $table->date('return_date');
+            $table->date('return_date')->nullable();
             $table->string('status');
             $table->timestamps();
         });
