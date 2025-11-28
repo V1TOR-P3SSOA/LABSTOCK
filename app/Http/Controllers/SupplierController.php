@@ -3,42 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
 
     public function index()
     {
-        //
+        $suppliers = Supplier::all();
+        return view('suppliers/index', compact('suppliers'));
     }
 
     public function create()
     {
-        //
+        return view('suppliers/create');
     }
 
     public function store(Request $request)
     {
-        //
+        Supplier::create($request->all());
+        return redirect()->route('suppliers.index')->with('sucess', 'fornecedor adicionado com sucesso!');
     }
 
-    public function show(string $id)
+
+    public function edit(Supplier $supplier)
     {
-        //
+        return view('suppliers/edit', compact('supplier'));
     }
 
-    public function edit(string $id)
+    public function update(Request $request, Supplier $supplier)
     {
-        //
+        $supplier->update($request->all());
+        return redirect()->route('suppliers.index')->with('sucess', 'Fornecedor atualizada com sucesso!');
     }
 
-    public function update(Request $request, string $id)
+    public function destroy(Supplier $supplier)
     {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        $supplier->delete();
+        return redirect()->route('suppliers.index')->with('sucess', 'fornecedor excluído com sucesso!');
     }
 }
