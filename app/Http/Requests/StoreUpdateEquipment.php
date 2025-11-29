@@ -31,7 +31,6 @@ class StoreUpdateEquipment extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                'unique:equipments,asset_code,' . $this->route('equipment')
             ],
             'status'=>[
                 'required',
