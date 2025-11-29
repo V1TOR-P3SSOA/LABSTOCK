@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reagent;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateReagent;
 
 class ReagentController extends Controller
 {
@@ -18,7 +18,7 @@ class ReagentController extends Controller
         return view('reagents/create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateReagent $request)
     {
         Reagent::create($request->all());
 
@@ -30,7 +30,7 @@ class ReagentController extends Controller
         return view('reagents.edit', compact('reagent'));
     }
 
-    public function update(Request $request, Reagent $reagent)
+    public function update(StoreUpdateReagent $request, Reagent $reagent)
     {
         $reagent->update($request->all());
         return redirect()->route('reagents.index')->with('sucess', 'Reagente atualizada com sucesso!');
