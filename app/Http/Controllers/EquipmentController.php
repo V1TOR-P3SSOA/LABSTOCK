@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipment;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateEquipment;
 
 class EquipmentController extends Controller
 {
@@ -19,7 +19,7 @@ class EquipmentController extends Controller
         return view('equipments/create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateEquipment $request)
     {
         Equipment::create($request->all());
 
@@ -31,7 +31,7 @@ class EquipmentController extends Controller
         return view('equipments.edit', compact('equipment'));
     }
 
-    public function update(Request $request, Equipment $equipment)
+    public function update(StoreUpdateEquipment $request, Equipment $equipment)
     {
         $equipment->update($request->all());
         return redirect()->route('equipments.index')->with('sucess', 'Equipamento atualizada com sucesso!');
