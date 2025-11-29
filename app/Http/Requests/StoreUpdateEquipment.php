@@ -11,7 +11,7 @@ class StoreUpdateEquipment extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,41 @@ class StoreUpdateEquipment extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>[
+                'required',
+                'string',
+                'max:255'
+            ],
+            'asset_code'=>[
+                'required',
+                'string',
+                'max:100',
+                'unique:equipments,asset_code,' . $this->route('equipment')
+            ],
+            'status'=>[
+                'required',
+                'in:Reservado,Disponível'
+            ],
+            'last_calibration'=>[
+                'nullable',
+                'date'
+            ],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.string' => 'O campo nome deve ser um texto.',
+            'name.max' => 'O campo nome não pode exceder 255 caracteres.',
+            'asset_code.required' => 'O campo código patrimonial é obrigatório.',
+            'asset_code.string' => 'O campo código patrimonial deve ser um texto.',
+            'asset_code.max' => 'O campo código patrimonial não pode exceder 100 caracteres.',
+            'asset_code.unique' => 'O código patrimonial já está em uso.',
+            'status.required' => 'O campo status é obrigatório.',
+            'status.in' => 'O campo status deve ser "Reservado" ou "Disponível".',
+            'last_calibration.date' => 'O campo última calibração deve ser uma data válida.',
         ];
     }
 }
