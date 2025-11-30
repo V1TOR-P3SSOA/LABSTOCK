@@ -23,7 +23,7 @@ class EquipmentController extends Controller
     {
         Equipment::create($request->all());
 
-        return redirect()->route('equipments.index')->with('sucess', 'equipamento adicionado com sucesso!');
+        return redirect()->route('equipments.index')->with('status', 'equipamento adicionado com sucesso!');
     }
 
     public function edit(Equipment $equipment)
@@ -34,12 +34,12 @@ class EquipmentController extends Controller
     public function update(StoreUpdateEquipment $request, Equipment $equipment)
     {
         $equipment->update($request->all());
-        return redirect()->route('equipments.index')->with('sucess', 'Equipamento atualizada com sucesso!');
+        return redirect()->route('equipments.index')->with('status', 'Equipamento atualizada com sucesso!');
     }
 
     public function destroy(Equipment $equipment)
     {
         $equipment->delete();
-        return redirect()->route('equipments.index')->with('sucess', 'Equipamento excluído com sucesso!');
+        return redirect()->route('equipments.index')->with('status', 'Equipamento excluído com sucesso!');
     }
 }
