@@ -3,28 +3,21 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class StoreUpdateLoan extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
             'equipment_id' => [
                 'required',
-                'exists:equipments,id'
+                'exists:equipments,id',
             ],
             'user_id' => [
                 'required',
@@ -41,10 +34,45 @@ class StoreUpdateLoan extends FormRequest
             ],
             'status' => [
                 'required',
-                'in:Empréstimo,Devolvido'
+                'in:Reservado,Emprestado,Devolvido'
             ],
         ];
     }
+
+    /**
+     * Adiciona a validação manual DEPOIS das regras acima.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            
+            $equipmentId = $this->input('equipment_id');
+            $userId = $this->input('user_id');
+            $status = $this->input('status');
+            $loanId = $this->route('loan') ? $this->route('loan')->id : null;
+            if (in_array($status, ['Reservado', 'Emprestado'])) {
+                $query = DB::table('loans')
+                    ->where('equipment_id', $equipmentId)
+                    ->where('user_id', $userId)
+                    ->whereIn('status', ['Reservado', 'Emprestado']);
+                if ($loanId) {
+                    $query->where('id', '!=', $loanId);
+                }
+                $error = $query->exists();
+
+                if ($error) {
+                    $validator->errors()->add(
+                        'equipment_id', 
+                        'Este usuário já possui uma reserva ativa (Reservado ou Emprestado) para este equipamento.'
+                    );
+                }
+            }
+        });
+    }
+
 
     public function messages(): array
     {
@@ -58,7 +86,7 @@ class StoreUpdateLoan extends FormRequest
             'return_date.date' => 'O campo data de devolução deve ser uma data válida.',
             'return_date.after_or_equal' => 'A data de devolução deve ser igual ou posterior à data de empréstimo.',
             'status.required' => 'O campo status é obrigatório.',
-            'status.in' => 'O campo status deve ser "Empréstimo" ou "Devolvido".',
+            'status.in' => 'O campo status deve ser "Reservado","Emprestado" ou "Devolvido".',
         ];
     }  
 }
