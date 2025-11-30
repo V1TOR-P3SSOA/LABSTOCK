@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateSupplier extends FormRequest
 {
@@ -21,6 +22,8 @@ class StoreUpdateSupplier extends FormRequest
      */
     public function rules(): array
     {
+        $supplierId = $this->route('supplier') ? $this->route('supplier')->id : null;
+
         return [
             'name'=>[
                 'required',
@@ -31,7 +34,7 @@ class StoreUpdateSupplier extends FormRequest
                 'required',
                 'string',
                 'max:20',
-                'unique:suppliers,cnpj,' . $this->route('supplier')
+                Rule::unique('suppliers', 'cnpj')->ignore($supplierId)
             ],
             'email'=>[
                 'required',
