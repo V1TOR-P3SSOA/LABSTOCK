@@ -22,7 +22,7 @@ class SupplierController extends Controller
     public function store(StoreUpdateSupplier $request)
     {
         Supplier::create($request->all());
-        return redirect()->route('suppliers.index')->with('sucess', 'fornecedor adicionado com sucesso!');
+        return redirect()->route('suppliers.index')->with('status', 'fornecedor adicionado com sucesso!');
     }
 
 
@@ -34,12 +34,12 @@ class SupplierController extends Controller
     public function update(StoreUpdateSupplier $request, Supplier $supplier)
     {
         $supplier->update($request->all());
-        return redirect()->route('suppliers.index')->with('sucess', 'Fornecedor atualizada com sucesso!');
+        return redirect()->route('suppliers.index')->with('status', 'Fornecedor atualizada com sucesso!');
     }
 
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-        return redirect()->route('suppliers.index')->with('sucess', 'fornecedor excluído com sucesso!');
+        return redirect()->route('suppliers.index')->with('status', 'fornecedor excluído com sucesso!');
     }
 }
