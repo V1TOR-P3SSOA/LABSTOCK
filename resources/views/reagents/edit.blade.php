@@ -12,8 +12,6 @@
                     <form class="form" action="{{ route('reagents.update', $reagent->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        
-                        {{-- MUDANÇA 1: FOCO DOS INPUTS (de indigo para blue) --}}
                         <div>
                             <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Nome:</label>
                             <input type="text" id="name" name="name" value="{{ $reagent->name }}" 
@@ -46,8 +44,6 @@
                                 <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                             @enderror
                         </div>
-                        
-                        {{-- MUDANÇA 2: BOTÃO DE ENVIO (Salvar) e link CANCELAR --}}
                         <div class="flex items-center gap-4 pt-6">
                             <button type="submit" 
                                 class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">

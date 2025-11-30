@@ -10,10 +10,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1 class="text-2xl font-semibold mb-6">Adicionar novo reagente</h1>
                     <form class="form" action="{{ route('reagents.store') }}" method="POST">
-                        @csrf
-                        
-                        {{-- MUDANÇA 1: ESTILO DOS CAMPOS DE INPUT --}}
-                        
+                        @csrf  
                         <div>
                             <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Nome:</label>
                             <input type="text" id="name" name="name" value="{{ old('name') }}"
@@ -49,8 +46,6 @@
                             @enderror
                             
                         </div>
-                        
-                        {{-- MUDANÇA 2: BOTÃO DE ENVIO (Cadastrar) --}}
                         <div class="flex items-center gap-4 pt-6">
                             <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">Cadastrar</button>
                             <a href="{{ route('reagents.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800">Voltar</a>

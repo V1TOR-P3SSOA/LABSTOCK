@@ -7,24 +7,17 @@
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        {{-- O CARD BRANCO ABAIXO JÁ ESTÁ PERFEITO CONTRA O FUNDO AZUL-CLARO --}}
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
-                
                 @if (session('status'))
                     <x-alert type="success" :message="session('status')" />
                 @endif
-                
-                {{-- MUDANÇA 1: BOTÃO PRINCIPAL (Adicionar Novo) --}}
                 <div class="mb-6">
                     <a href="{{ route('reagents.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
                         Adicionar novo reagente
                     </a>
                 </div>
-                
-                {{-- TABELA DE DADOS --}}
                 <div class="overflow-x-auto">
-                    {{-- MUDANÇA 2: CABEÇALHO DA TABELA (THEAD) --}}
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-blue-50 dark:bg-gray-700">
                             <tr>
@@ -62,7 +55,6 @@
                                         {{ $reagent->unit }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        {{-- MUDANÇA 3: LINKS DE AÇÃO (EDITAR) --}}
                                         <a href="{{ route('reagents.edit', $reagent->id) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-100">Editar</a>
                                         <form action="{{ route('reagents.destroy', $reagent->id) }}" method="POST" class="inline-block ml-4" onsubmit="return confirm('Tem certeza que deseja excluir este reagente?');">
                                             @csrf 
