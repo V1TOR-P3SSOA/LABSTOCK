@@ -31,6 +31,9 @@
                                     Data de devolução
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                     Ações
                                 </th>
                             </tr>
@@ -49,6 +52,9 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
                                         {{ $loan->return_date }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                        {{ $loan->status }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('loans.edit', $loan->id) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-100">Editar</a>
@@ -72,39 +78,3 @@
 
 
 </x-app-layout>
-
-<!-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Reservas') }}
-        </h2>
-    </x-slot>
-
-    <a href="{{ route('loans.create') }}">Registrar nova reserva</a>
-
-    <table>
-        <tr>
-            <td>USUÁRIO</td>
-            <td>EQUIPAMENTO</td>
-            <td>DATA DE RESERVA</td>
-            <td>DATA DE ENTREGA</td>
-            <td>STATUS</td>
-        </tr>
-        @foreach ($loans as $loan)
-            <tr>
-                <td>{{ $loan -> user -> name }}</td>
-                <td>{{ $loan -> equipment -> name }}<td>
-                <td>{{ $loan -> asset_code }}</td>
-                <td>{{ $loan -> borrow_date }}</td>
-                <td>{{ $loan -> return_date }}</td>
-                
-                <td>
-                    <a href="{{ route('loans.edit', $loan -> id) }}">Editar</a> | <form action="{{ route('reagents.destroy', $loan -> id) }}" method="POST" id="delete">
-                        @csrf 
-                        @method('DELETE')
-                        <button type="submit">Excluir</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-</x-app-layout> -->
