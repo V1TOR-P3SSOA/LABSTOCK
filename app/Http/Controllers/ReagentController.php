@@ -22,7 +22,7 @@ class ReagentController extends Controller
     {
         Reagent::create($request->all());
 
-        return redirect()->route('reagents.index')->with('sucess', 'reagente adicionado com sucesso!');
+        return redirect()->route('reagents.index')->with('status', 'reagente adicionado com sucesso!');
     }
 
     public function edit(Reagent $reagent)
@@ -33,12 +33,12 @@ class ReagentController extends Controller
     public function update(StoreUpdateReagent $request, Reagent $reagent)
     {
         $reagent->update($request->all());
-        return redirect()->route('reagents.index')->with('sucess', 'Reagente atualizada com sucesso!');
+        return redirect()->route('reagents.index')->with('status', 'Reagente atualizada com sucesso!');
     }
 
     public function destroy(Reagent $reagent)
     {
         $reagent->delete();
-        return redirect()->route('reagents.index')->with('sucess', 'reagente excluído com sucesso!');
+        return redirect()->route('reagents.index')->with('status', 'reagente excluído com sucesso!');
     }
 }
