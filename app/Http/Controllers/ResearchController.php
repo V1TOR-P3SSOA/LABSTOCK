@@ -8,24 +8,23 @@ use App\Http\Requests\StoreUpdateResearch;
 
 class ResearchController extends Controller
 {
-        public function index()
+    public function index()
     {
         $researches = Research::with(['user'])->get();
         return view('researches.index', compact('researches'));
     }
-
     public function create()
     {
         $users = User::all();
         return view('researches.create', compact('users'));
     }
-
     public function store(StoreUpdateResearch $request)
     {
-        $data = $request->all();
-        $data['user_id'] = auth()->id();
+        $data = $request->validated();
+        
         Research::create($data);
-        return redirect()->route('researches.index')->with('success', 'Pesquisa cadastrada com sucesso!');
+
+        return redirect()->route('researches.index')->with('status', 'Pesquisa cadastrada com sucesso!');
     }
 
     public function edit(Research $research)
@@ -33,17 +32,15 @@ class ResearchController extends Controller
         $users = User::all();
         return view('researches.edit', compact('research','users'));
     }
-
     public function update(StoreUpdateResearch $request, Research $research)
     {
-        $loan = Research::findOrFail($research->id);
-        $loan->update($request->all());
-        return redirect()->route('researches.index')->with('success', 'Pesquisa atualizada!');
+        $research->update($request->validated());
+        return redirect()->route('researches.index')->with('status', 'Pesquisa atualizada!');
     }
 
     public function destroy(Research $research)
     {
         $research->delete();
-        return redirect()->route('researches.index')->with('sucess', 'Pesquisa excluída com sucesso!');
+        return redirect()->route('researches.index')->with('status', 'Pesquisa excluída com sucesso!');
     }
 }
