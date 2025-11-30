@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateSupplier;
 use App\Models\Supplier;
 
 class SupplierController extends Controller
@@ -19,7 +19,7 @@ class SupplierController extends Controller
         return view('suppliers/create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateSupplier $request)
     {
         Supplier::create($request->all());
         return redirect()->route('suppliers.index')->with('sucess', 'fornecedor adicionado com sucesso!');
@@ -31,7 +31,7 @@ class SupplierController extends Controller
         return view('suppliers/edit', compact('supplier'));
     }
 
-    public function update(Request $request, Supplier $supplier)
+    public function update(StoreUpdateSupplier $request, Supplier $supplier)
     {
         $supplier->update($request->all());
         return redirect()->route('suppliers.index')->with('sucess', 'Fornecedor atualizada com sucesso!');
