@@ -25,7 +25,7 @@ class LoanController extends Controller
     {
         Loan::create($request->validated());
         
-        return redirect()->route('loans.index')->with('sucess', 'reserva registrada com sucesso!');
+        return redirect()->route('loans.index')->with('status', 'reserva registrada com sucesso!');
     }
 
     public function edit(Loan $loan)
@@ -38,12 +38,12 @@ class LoanController extends Controller
     {
         $loan->update($request->validated());
         
-        return redirect()->route('loans.index')->with('success', 'Reserva atualizada!');
+        return redirect()->route('loans.index')->with('status', 'Reserva atualizada!');
     }
 
     public function destroy(Loan $loan)
     {
         $loan->delete();
-        return redirect()->route('loans.index')->with('sucess', 'Reserva excluída com sucesso!');
+        return redirect()->route('loans.index')->with('status', 'Reserva excluída com sucesso!');
     }
 }
