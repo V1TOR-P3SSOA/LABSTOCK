@@ -21,6 +21,9 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('equipment_id')
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label for="user_id" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Solicitante:</label>
@@ -31,14 +34,34 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('user_id')
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label for="quantity" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Data de retirada:</label>
                             <input type="text" id="quantity" name="quantity" value="{{ $loan->borrow_date }}"  class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
+                            @error('borrow_date')
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label for="unit" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Data de devolução:</label>
                             <input type="text" id="unit" name="unit" value="{{ $loan->return_date }}"  class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full">
+                            @error('return_date')
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="status" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Status:</label>
+                            <select id="status" name="status" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full" required>
+                                <option value="Reservado">Reservado</option>
+                                <option value="Emprestado">Emprestado</option>
+                                <option value="Disponível">Disponível</option>
+                            </select>
+                            @error('status')
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="flex items-center gap-4 pt-4">
                             <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">Salvar</button>
