@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Research;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateResearch;
 
 class ResearchController extends Controller
 {
@@ -20,7 +20,7 @@ class ResearchController extends Controller
         return view('researches.create', compact('users'));
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateResearch $request)
     {
         $data = $request->all();
         $data['user_id'] = auth()->id();
@@ -34,7 +34,7 @@ class ResearchController extends Controller
         return view('researches.edit', compact('research','users'));
     }
 
-    public function update(Request $request, Research $research)
+    public function update(StoreUpdateResearch $request, Research $research)
     {
         $loan = Research::findOrFail($research->id);
         $loan->update($request->all());
